@@ -1,22 +1,20 @@
 <?php
-// Pastikan session aktif
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Cek role
-if (!isset($_SESSION['role']) || $_SESSION['role'] != 'pengguna') {
-    header("Location: ../auth/v_login.php?msg=Akses ditolak");
+// Hanya pengguna yang boleh akses
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'pengguna') {
+    header("Location: /PERPUSTAKAAN_kel6/index.php?page=login&msg=Akses ditolak");
     exit;
 }
 
-// Gunakan __DIR__ agar path selalu benar
 include_once __DIR__ . "/../../template/navbar_pengguna.php"; 
 include_once __DIR__ . "/../../model/m_user.php";
 
 $userModel = new m_user();
-$id_user = $_SESSION['id_user'];
-$user = $userModel->tampil_data_by_id($id_user);
+$id_user   = $_SESSION['id_user'];
+$user      = $userModel->get_user_by_id($id_user); // gunakan fungsi get_user_by_id
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -25,17 +23,10 @@ $user = $userModel->tampil_data_by_id($id_user);
   <title>Profil Saya</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body {
-      background-color: #f4f7fc;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    body { background-color: #f4f7fc; font-family: 'Segoe UI', sans-serif; }
     .form-container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px; margin: 40px auto; background: white;
+      padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
   </style>
 </head>
