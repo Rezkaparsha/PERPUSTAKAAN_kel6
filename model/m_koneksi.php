@@ -4,10 +4,10 @@
 class m_koneksi
 { //sesuaikan dengan nama file
     //private agar bisa diakses oleh class itu sendiri
-    private $host = "sql202.infinityfree.com", // jangan pakai spasi, harus localhost
-        $username = "if0_40665374",
-        $pass = "oqBtYJHdvrmtMA", // di hp paswordnya root
-        $db = "if0_40665374_perpustakaan_kel6"; //sesuaikan dengan nama database
+    private $host = "localhost", // jangan pakai spasi, harus localhost
+        $username = "root",
+        $pass = "", // di hp paswordnya root
+        $db = "perpustakaan_kel6"; //sesuaikan dengan nama database
 
     public $koneksi;
 
